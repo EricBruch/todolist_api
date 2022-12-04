@@ -1,6 +1,7 @@
 from django.db import models
 import datetime
 from django.conf import settings
+from datetime import date
 
 
 class Todo(models.Model):
@@ -11,3 +12,7 @@ class Todo(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
+
+    def time_passed(self):
+        delta = date.today() - self.created_at
+        return delta.days

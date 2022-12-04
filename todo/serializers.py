@@ -18,4 +18,4 @@ class TodoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Todo
         fields = ['id', 'title', 'description',
-                  'created_at', 'user']  # , 'user'
+                  'created_at', 'user', 'time_passed']
