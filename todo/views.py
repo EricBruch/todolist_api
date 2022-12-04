@@ -18,8 +18,8 @@ class TodoViewSet(viewsets.ModelViewSet):
 
     def create(self, request):
         todo = Todo.objects.create(
-            title=self.request.POST['title'],
-            description=self.request.POST['description'],
+            title=request.data['title'],
+            description=request.data['description'],
             user=self.request.user,
         )
         serialized_obj = serializers.serialize('json', [todo])
