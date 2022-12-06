@@ -130,3 +130,10 @@ MEDIA_ROOT = '/home/EricBruch/todolist_api/media'
 MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/EricBruch/todolist_api/static'
 STATIC_URL = '/static/'
+
+#
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}

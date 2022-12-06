@@ -7,7 +7,9 @@ from .serializers import TodoSerializer
 from django.http import HttpResponse
 from django.core import serializers
 from django.contrib.auth import authenticate, login
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from rest_framework.permissions import IsAuthenticated
 
 
 class TodoViewSet(viewsets.ModelViewSet):
@@ -16,8 +18,9 @@ class TodoViewSet(viewsets.ModelViewSet):
     """
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
-    permission_classes = []  # permissions.IsAuthenticated
+    permission_classes = [IsAuthenticated]  # permissions.IsAuthenticated
 
+    @method_decorator(login_required)
     def create(self, request):
         todo = Todo.objects.create(
             title=request.data['title'],
