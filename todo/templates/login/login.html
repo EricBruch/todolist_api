@@ -1,0 +1,41 @@
+<div>
+  <h2>login</h2>
+  <form action="/login/" method="POST">
+    {% csrf_token %}
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label class="mdl-textfield__label" for="username">Username</label>
+      <input
+        class="mdl-textfield__input"
+        name="username"
+        type="text"
+        id="username"
+      />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label class="mdl-textfield__label" for="password">Passwort</label>
+      <input
+        class="mdl-textfield__input"
+        name="password"
+        type="text"
+        id="password"
+      />
+    </div>
+    <div>
+      <button
+        id="loginBtn"
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+      >
+        Login
+      </button>
+    </div>
+  </form>
+  <div>
+    {% if successful %}
+    <b>successful</b>
+    {% endif %}
+    <!---->
+    {% if error %}
+    <b>invalid</b>
+    {% endif %}
+  </div>
+</div>

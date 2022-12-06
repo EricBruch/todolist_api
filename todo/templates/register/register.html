@@ -1,0 +1,48 @@
+<div>
+  <h2>register</h2>
+  <form action="/register/" method="POST">
+    {% csrf_token %}
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label class="mdl-textfield__label" for="username">Username</label>
+      <input
+        class="mdl-textfield__input"
+        name="username"
+        type="text"
+        id="username"
+      />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label class="mdl-textfield__label" for="email">E-Mail</label>
+      <input class="mdl-textfield__input" name="email" type="text" id="email" />
+    </div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <label class="mdl-textfield__label" for="password">Password</label>
+      <input
+        class="mdl-textfield__input"
+        name="password"
+        type="text"
+        id="password"
+      />
+    </div>
+    <div>
+      <button
+        id="registerBtn"
+        class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+  <div>
+    {% if successful %}
+    <b>successful</b>
+    {% endif %}
+    <!---->
+    {% if error %}
+    <b>invalid</b>
+    {% endif %}
+  </div>
+  <div>
+    <a class="mdl-navigation__link" href="/">go to Api After Login</a>
+  </div>
+</div>
