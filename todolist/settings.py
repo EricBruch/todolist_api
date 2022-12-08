@@ -25,21 +25,26 @@ SECRET_KEY = 'django-insecure-nl2h5amhg39$#yayoc9)4@0x^a691fgk!i45qd6pr)4lycb=qs
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['EricBruch.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['EricBruch.pythonanywhere.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # Django Apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'todo',
+
+    # Third-Party Apps
     'rest_framework',
     'rest_framework.authtoken',
+
+    # Project Apps
+    'todo',
 ]
 
 MIDDLEWARE = [
@@ -134,11 +139,15 @@ STATIC_URL = '/static/'
 
 #
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
+    'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.authentication.TokenAuthentication',
-    )
+    ],
 }
+
+# 'DEFAULT_AUTHENTICATION_CLASSES': (
+#     'rest_framework.authentication.TokenAuthentication',
+#     'rest_framework.authentication.SessionAuthentication',
+# ),
+# 'DEFAULT_PERMISSION_CLASSES': (
+#     'rest_framework.authentication.TokenAuthentication',
+# )

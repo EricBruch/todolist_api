@@ -16,12 +16,11 @@ from rest_framework.authtoken.models import Token
 
 class TodoViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows users to be viewed or edited.
+    API endpoint that allows Todos to be viewed or edited.
     """
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [TokenAuthentication]  # permissions.IsAuthenticated
+    permission_classes = [TokenAuthentication]  # permissions.IsAuthenticated     # TokenAuthentication
 
     # @method_decorator(login_required)
     def create(self, request):
