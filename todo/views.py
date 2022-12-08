@@ -10,6 +10,8 @@ from django.contrib.auth import authenticate, login
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.authtoken.models import Token
 
 
 class TodoViewSet(viewsets.ModelViewSet):
@@ -18,9 +20,10 @@ class TodoViewSet(viewsets.ModelViewSet):
     """
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
-    permission_classes = [IsAuthenticated]  # permissions.IsAuthenticated
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [TokenAuthentication]  # permissions.IsAuthenticated
 
-    @method_decorator(login_required)
+    # @method_decorator(login_required)
     def create(self, request):
         todo = Todo.objects.create(
             title=request.data['title'],
@@ -51,6 +54,8 @@ def register_view(request):
         username, password, email = request.POST['username'], request.POST[
             'password'], request.POST['email']
         user = User.objects.create_user(username, email, password)
+        user = authenticate(username=username, password=password)
+        Token.objects.create(user=user)
         login(request, user)
         return render(request, 'register/register.html', {'successful': True})
     return render(request, 'register/register.html')
