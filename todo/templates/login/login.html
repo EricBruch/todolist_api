@@ -1,3 +1,18 @@
+<script>
+  const myCall = async () => {
+    let res = await fetch("http://127.0.0.1:8000/todos", {
+      method: "GET",
+      headers: new Headers({
+        Authorization: "Token 9eb15180873e02d16c5b4726775f5a9233ee4280",
+      }),
+    });
+  
+    let json = await res.json();
+  
+    console.log("json res", json);
+  };
+</script>
+
 <div>
   <h2>login</h2>
   <form action="/login/" method="POST">
@@ -44,4 +59,6 @@
   <div>
     <a class="mdl-navigation__link" href="/register/">go to Register</a>
   </div>
+
+  <button onclick="myCall()">actionBtn</button>
 </div>

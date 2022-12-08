@@ -20,9 +20,8 @@ class TodoViewSet(viewsets.ModelViewSet):
     """
     queryset = Todo.objects.all()
     serializer_class = TodoSerializer
-    permission_classes = [TokenAuthentication]  # permissions.IsAuthenticated     # TokenAuthentication
+    permission_classes = [IsAuthenticated] # TokenAuthentication
 
-    # @method_decorator(login_required)
     def create(self, request):
         todo = Todo.objects.create(
             title=request.data['title'],
