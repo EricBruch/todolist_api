@@ -167,12 +167,20 @@ CORS_ALLOW_ALL_ORIGINS: False
 CORS_ALLOWED_ORIGINS = [
     # "https://example.com",
     # "https://sub.example.com",
-    "https://www.google.com"
+    "https://www.google.com",
+    # "https://ericbruch.pythonanywhere.com",
     # "http://localhost:8080",
     # "http://127.0.0.1:8000",
 
 ]
 
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^gruppe-.*developerakademie.net",
+    r"^https://eric.*bruch.pythonanywhere.com",
+]
+
+
+# gruppe-397.developerakademie.net
 
 CORS_ALLOW_METHODS = list(default_methods) + [
     # add methods here
