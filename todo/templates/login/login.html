@@ -1,15 +1,17 @@
 <script>
   const getAuthToken = async () => {
-    let username = "eric";
-    let password = "sXzN7acB";
-
     let res = await fetch(
       "https://ericbruch.pythonanywhere.com/api-token-auth/",
       {
         method: "POST",
+        body: {
+          username: "eric",
+          password: "sXzN7acB",
+        },
       }
     );
     let json = await res.json();
+    console.log("authToken", json);
   };
 
   const myCall = async () => {
