@@ -176,7 +176,7 @@ CORS_ALLOWED_ORIGINS = [
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
     r"^gruppe-.*developerakademie.net",
-    r"^https://eric.*bruch.pythonanywhere.com",
+    r"^https://ericccc.*bruch.pythonanywhere.com",
 ]
 
 
