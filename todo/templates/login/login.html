@@ -1,4 +1,17 @@
 <script>
+  const getAuthToken = async () => {
+    let username = "eric";
+    let password = "sXzN7acB";
+
+    let res = await fetch(
+      "https://ericbruch.pythonanywhere.com/api-token-auth/",
+      {
+        method: "GET",
+      }
+    );
+    let json = await res.json();
+  };
+
   const myCall = async () => {
     let res = await fetch("http://127.0.0.1:8000/todos", {
       method: "GET",
@@ -6,9 +19,9 @@
         Authorization: "Token 9eb15180873e02d16c5b4726775f5a9233ee4280",
       }),
     });
-  
+
     let json = await res.json();
-  
+
     console.log("json res", json);
   };
 </script>
@@ -60,5 +73,7 @@
     <a class="mdl-navigation__link" href="/register/">go to Register</a>
   </div>
 
-  {% comment %} <button onclick="myCall()">actionBtn try cors</button> {% endcomment %}
+  {% comment %}
+  <button onclick="myCall()">actionBtn try cors</button>
+  {% endcomment %}
 </div>
