@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from corsheaders.defaults import default_headers
+from corsheaders.defaults import default_methods
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     # Third-Party Apps
     'rest_framework',
     'rest_framework.authtoken',
+    "corsheaders",
 
     # Project Apps
     'todo',
@@ -50,6 +53,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "corsheaders.middleware.CorsMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -137,6 +141,7 @@ MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/EricBruch/todolist_api/static'
 STATIC_URL = '/static/'
 
+# REST FRAMEWORK
 #
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -151,3 +156,29 @@ REST_FRAMEWORK = {
 # 'DEFAULT_PERMISSION_CLASSES': (
 #     'rest_framework.authentication.TokenAuthentication',
 # )
+
+#
+# DJANGO-CORS_HEADERS
+#
+
+CORS_ALLOW_ALL_ORIGINS: False
+
+# allow specific origins
+CORS_ALLOWED_ORIGINS = [
+    # "https://example.com",
+    # "https://sub.example.com",
+    "https://www.google.com"
+    # "http://localhost:8080",
+    # "http://127.0.0.1:8000",
+
+]
+
+
+CORS_ALLOW_METHODS = list(default_methods) + [
+    # add methods here
+]
+
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    # add custom
+]
