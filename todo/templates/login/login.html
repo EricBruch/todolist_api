@@ -1,25 +1,27 @@
 <script>
-  const getAuthToken = async () => {
+  const getAuthToken = async (username, password) => {
     const formData = new FormData();
-    formData.append("username", "eric");
-    formData.append("password", "sXzN7acB");
+    formData.append("username", username);
+    formData.append("password", password);
 
-    let res = await fetch(
+    const res = await fetch(
       "https://ericbruch.pythonanywhere.com/api-token-auth/",
       {
         method: "POST",
         body: formData,
       }
     );
-    let json = await res.json();
-    console.log("authToken", json);
+    const authToken = await res.json();
+    return authToken.token;
   };
 
-  const myCall = async () => {
-    let res = await fetch("http://127.0.0.1:8000/todos", {
+  const callGetTodos = async () => {
+    const token = await getAuthToken("eric", "sXzN7acB");
+
+    const res = await fetch("http://127.0.0.1:8000/todos", {
       method: "GET",
       headers: new Headers({
-        Authorization: "Token 9eb15180873e02d16c5b4726775f5a9233ee4280",
+        Authorization: `Token ${token}`,
       }),
     });
 
