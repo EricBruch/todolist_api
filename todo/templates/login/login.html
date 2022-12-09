@@ -1,8 +1,23 @@
 <script>
-  const getAuthToken = async (username, password) => {
+  const getTodos = async () => {
+    const token = await getAuthToken();
+
+    const res = await fetch("http://127.0.0.1:8000/todos", {
+      method: "GET",
+      headers: new Headers({
+        Authorization: `Token ${token}`,
+      }),
+    });
+
+    const json = await res.json();
+
+    console.log("json response all todos", json);
+  };
+
+  const getAuthToken = async () => {
     const formData = new FormData();
-    formData.append("username", username);
-    formData.append("password", password);
+    formData.append("username", username.value);
+    formData.append("password", password.value);
 
     const res = await fetch(
       "https://ericbruch.pythonanywhere.com/api-token-auth/",
@@ -14,23 +29,40 @@
     const authToken = await res.json();
     return authToken.token;
   };
-
-  const callGetTodos = async () => {
-    const token = await getAuthToken("eric", "sXzN7acB");
-
-    const res = await fetch("http://127.0.0.1:8000/todos", {
-      method: "GET",
-      headers: new Headers({
-        Authorization: `Token ${token}`,
-      }),
-    });
-
-    let json = await res.json();
-
-    console.log("json res", json);
-  };
 </script>
 
+<h1>Type user, password and click on Button to get All todos</h1>
+<form onsubmit="return false">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <label class="mdl-textfield__label" for="username">Username</label>
+    <input
+      class="mdl-textfield__input"
+      name="username"
+      type="text"
+      id="username"
+    />
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <label class="mdl-textfield__label" for="password">Passwort</label>
+    <input
+      class="mdl-textfield__input"
+      name="password"
+      type="text"
+      id="password"
+    />
+  </div>
+</form>
+<div>
+  <button
+    id="getTodosBtn"
+    class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+    onclick="getTodos()"
+  >
+    Click Button to receive all todos in console
+  </button>
+</div>
+
+{% comment %}
 <div>
   <h2>login</h2>
   <form action="/login/" method="POST">
@@ -77,8 +109,5 @@
   <div>
     <a class="mdl-navigation__link" href="/register/">go to Register</a>
   </div>
-
-  {% comment %}
-  <button onclick="myCall()">actionBtn try cors</button>
-  {% endcomment %}
 </div>
+{% endcomment %}
