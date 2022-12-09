@@ -1,13 +1,14 @@
 <script>
   const getAuthToken = async () => {
+    const formData = new FormData();
+    formData.append("username", "eric");
+    formData.append("password", "sXzN7acB");
+
     let res = await fetch(
       "https://ericbruch.pythonanywhere.com/api-token-auth/",
       {
         method: "POST",
-        body: {
-          username: "eric",
-          password: "sXzN7acB",
-        },
+        body: formData,
       }
     );
     let json = await res.json();
