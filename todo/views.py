@@ -52,7 +52,6 @@ def register_view(request):
         username, password, email = request.POST['username'], request.POST[
             'password'], request.POST['email']
         user = User.objects.create_user(username, email, password)
-        user = authenticate(username=username, password=password)
         Token.objects.create(user=user)
         login(request, user)
         return render(request, 'register/register.html', {'successful': True})
